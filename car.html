@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Автомобіль - KovAuto</title>
+    <meta name="description" content="Детальна інформація про автомобіль на KovAuto." />
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body class="car-detail-page" data-page="car">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="KovAuto">
+        <span class="brand-mark"><img src="media/Mainlogo.png" alt="" /></span><span>KovAuto</span>
+      </a>
+      <nav class="main-nav" aria-label="Головна навігація">
+        <a href="catalog.html"><i data-lucide="arrow-left"></i> До каталогу</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button" id="messagesButton" type="button" aria-label="Повідомлення">
+          <i data-lucide="message-circle"></i><span id="messagesCount">0</span>
+        </button>
+        <button class="header-auth-button register-button" id="registerButton" type="button">Реєстрація</button>
+        <button class="header-auth-button login-button" id="loginButton" type="button">Вхід</button>
+        <button class="menu-button" id="menuButton" type="button" aria-label="Меню"><i data-lucide="menu"></i></button>
+      </div>
+    </header>
+
+    <main class="vehicle-detail" id="vehicleDetail" aria-live="polite">
+      <a class="detail-back" href="catalog.html"><i data-lucide="arrow-left"></i> Повернутися до каталогу</a>
+      <section class="detail-hero">
+        <img id="detailImage" src="" alt="" />
+        <span class="detail-sold-badge" id="detailSoldBadge" hidden>Продано</span>
+      </section>
+
+      <div class="detail-title-row">
+        <div><p class="eyebrow">Перевірене оголошення</p><h1 id="detailTitle">Завантаження...</h1><p class="detail-views" id="detailViews"></p></div>
+        <strong class="detail-price" id="detailPrice"></strong>
+      </div>
+
+      <div class="detail-layout">
+        <section class="detail-content">
+          <h2>Характеристики</h2>
+          <div class="spec-grid" id="specGrid"></div>
+          <div class="detail-description">
+            <h2>Опис автомобіля</h2>
+            <p id="detailDescription"></p>
+          </div>
+        </section>
+
+        <aside class="seller-panel">
+          <div class="seller-icon"><i data-lucide="user-round"></i></div>
+          <p class="eyebrow">Інформація від продавця</p>
+          <h2 id="sellerName">KovAuto</h2>
+          <p id="sellerText">Перевірений продавець. Зв'яжіться з ним через платформу KovAuto.</p>
+          <div class="seller-check"><i data-lucide="badge-check"></i><span>Профіль перевірено</span></div>
+          <button class="seller-message-button" id="messageSellerButton" type="button"><i data-lucide="message-circle"></i>Написати продавцю</button>
+        </aside>
+      </div>
+
+      <button class="detail-favorite-button" id="detailFavorite" type="button">
+        <i data-lucide="heart"></i><span>Додати в обране</span>
+      </button>
+    </main>
+
+    <div class="modal" id="authModal" aria-hidden="true">
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+        <button class="icon-button plain modal-close" id="closeAuth" type="button" aria-label="Закрити"><i data-lucide="x"></i></button>
+        <p class="eyebrow">KovAuto account</p>
+        <h2 id="authTitle">Увійдіть до акаунта</h2>
+        <div class="auth-tabs">
+          <button class="active" type="button" data-auth-mode="login">Вхід</button>
+          <button type="button" data-auth-mode="register">Реєстрація</button>
+        </div>
+        <form class="auth-form" id="authForm">
+          <p class="form-status" id="authStatus"></p>
+          <label id="authNameField" hidden><span>Ім'я</span><input id="authName" autocomplete="name" /></label>
+          <label><span>Email</span><input id="authEmail" type="email" required autocomplete="email" /></label>
+          <label><span>Пароль</span><input id="authPassword" type="password" required minlength="8" autocomplete="current-password" /></label>
+          <button class="primary-button full" id="authSubmit" type="submit">Увійти</button>
+        </form>
+      </div>
+    </div>
+
+    <footer class="site-footer compact-footer">
+      <div><a class="brand footer-brand" href="index.html"><span class="brand-mark"><img src="media/Mainlogo.png" alt="" /></span><span>KovAuto</span></a><p>Український маркетплейс вживаних автомобілів.</p></div>
+      <div><h3>Навігація</h3><a href="index.html">Головна</a><a href="catalog.html">Каталог</a></div>
+      <div><h3>Контакти</h3><a href="tel:+380961616770">+380961616770</a><a href="mailto:kovalenkanazar2006@gmail.com">kovalenkanazar2006@gmail.com</a><span>Конотоп, Україна</span></div>
+    </footer>
+  </body>
+</html>

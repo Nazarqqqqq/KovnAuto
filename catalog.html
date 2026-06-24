@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Каталог автомобілів - KovAuto</title>
+    <meta name="description" content="Пошук вживаних автомобілів за маркою, моделлю, роком, ціною та пробігом." />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body class="catalog-page" data-page="catalog">
+    <header class="site-header catalog-header">
+      <a class="brand" href="index.html" aria-label="KovAuto">
+        <span class="brand-mark"><img src="media/Mainlogo.png" alt="" /></span>
+        <span>KovAuto</span>
+      </a>
+      <nav class="main-nav" aria-label="Головна навігація">
+        <a href="index.html#brands">Марки</a>
+        <a href="catalog.html">Авто</a>
+        <a href="index.html#listings">Нові</a>
+        <a href="index.html#top">Пошук</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button" id="favoritesButton" type="button" aria-label="Обране">
+          <i data-lucide="heart"></i><span id="favoritesCount">0</span>
+        </button>
+        <button class="icon-button" id="messagesButton" type="button" aria-label="Повідомлення">
+          <i data-lucide="message-circle"></i><span id="messagesCount">0</span>
+        </button>
+        <button class="ghost-button" id="loginButton" type="button">Увійти</button>
+        <button class="menu-button" id="menuButton" type="button" aria-label="Меню"><i data-lucide="menu"></i></button>
+      </div>
+    </header>
+
+    <main class="catalog-main">
+      <div class="catalog-heading">
+        <div>
+          <p class="eyebrow">Каталог KovAuto</p>
+          <h1>Автомобілі у продажу</h1>
+        </div>
+        <button class="filter-toggle ghost-button" id="filterToggle" type="button">
+          <i data-lucide="sliders-horizontal"></i> Фільтри
+        </button>
+      </div>
+
+      <div class="catalog-layout">
+        <aside class="catalog-filters" id="catalogFilters">
+          <div class="filter-head">
+            <h2>Фільтри</h2>
+            <button class="filter-reset" id="filterReset" type="button">Очистити</button>
+          </div>
+          <form id="catalogFilterForm">
+            <label>
+              <span>Марка</span>
+              <select id="catalogBrand" name="brand"><option value="">Усі марки</option></select>
+            </label>
+            <label>
+              <span>Модель</span>
+              <input id="catalogModel" name="model" type="search" placeholder="Наприклад, X5" />
+            </label>
+            <label>
+              <span>Місто</span>
+              <input id="catalogCity" name="city" type="search" placeholder="Наприклад, Київ" />
+            </label>
+            <label>
+              <span>Рік від</span>
+              <input id="catalogYear" name="year" type="number" min="1950" max="2027" placeholder="2018" />
+            </label>
+            <label>
+              <span>Ціна до, $</span>
+              <input id="catalogPrice" name="price" type="number" min="0" step="1000" placeholder="60000" />
+            </label>
+            <label>
+              <span>Пробіг до, км</span>
+              <input id="catalogMileage" name="mileage" type="number" min="0" step="1000" placeholder="100000" />
+            </label>
+            <button class="primary-button full" type="submit"><i data-lucide="search"></i> Показати авто</button>
+          </form>
+        </aside>
+
+        <section class="catalog-results" aria-live="polite">
+          <div class="catalog-toolbar">
+            <label class="sort-label">
+              <span>Сортування</span>
+              <select id="catalogSort" name="sort">
+                <option value="recommended">Рекомендовані</option>
+                <option value="priceAsc">Ціна: дешевші</option>
+                <option value="priceDesc">Ціна: дорожчі</option>
+                <option value="yearDesc">Рік: новіші</option>
+                <option value="mileageAsc">Пробіг: менший</option>
+              </select>
+            </label>
+          </div>
+          <div class="catalog-grid" id="catalogGrid"></div>
+          <div class="catalog-empty" id="catalogEmpty" hidden>
+            <i data-lucide="search-x"></i>
+            <h2>Автомобілі не знайдено</h2>
+            <p>Змініть один або кілька параметрів фільтра.</p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <aside class="dashboard" id="dashboard" aria-hidden="true">
+      <div class="dashboard-panel">
+        <div class="dashboard-head">
+          <div><p class="eyebrow">Особистий кабінет</p><h2>Мої оголошення</h2></div>
+          <button class="icon-button plain" id="closeDashboard" type="button" aria-label="Закрити"><i data-lucide="x"></i></button>
+        </div>
+        <div class="account-row"><span id="accountName"></span><button id="logoutButton" type="button">Вийти</button></div>
+        <form class="ad-form" id="adForm">
+          <input type="hidden" id="editId" />
+          <label><span>Марка</span><select id="adBrand" required><option value="">Оберіть марку</option></select></label>
+          <label><span>Модель</span><input id="adModel" required placeholder="E-Class" /></label>
+          <label><span>Об'єм двигуна, л</span><input id="adEngine" type="number" min="0.1" max="9.9" step="0.1" placeholder="2.0" /></label>
+          <label><span>Місто</span><input id="adCity" required placeholder="Київ" /></label>
+          <div class="form-row">
+            <label><span>Рік</span><input id="adYear" required type="number" min="1950" max="2027" /></label>
+            <label><span>Ціна, $</span><input id="adPrice" required type="number" min="1" /></label>
+          </div>
+          <div class="form-row">
+            <label><span>Пробіг, км</span><input id="adMileage" required type="number" min="0" /></label>
+            <label><span>Фото URL</span><input id="adImage" type="url" placeholder="https://..." /></label>
+          </div>
+          <label><span>Або завантажте фото</span><input id="adPhoto" type="file" accept="image/jpeg,image/png,image/webp,image/avif" /></label>
+          <label><span>Опис автомобіля</span><textarea id="adDescription" rows="5" maxlength="5000" placeholder="Стан, комплектація, історія обслуговування..."></textarea></label>
+          <p class="form-status" id="adStatus"></p>
+          <button class="primary-button full" type="submit"><i data-lucide="save"></i> Зберегти оголошення</button>
+        </form>
+        <div class="my-ads" id="myAds"></div>
+      </div>
+    </aside>
+
+    <div class="modal" id="authModal" aria-hidden="true">
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+        <button class="icon-button plain modal-close" id="closeAuth" type="button" aria-label="Закрити"><i data-lucide="x"></i></button>
+        <p class="eyebrow">KovAuto account</p>
+        <h2 id="authTitle">Увійдіть до акаунта</h2>
+        <div class="auth-tabs">
+          <button class="active" type="button" data-auth-mode="login">Вхід</button>
+          <button type="button" data-auth-mode="register">Реєстрація</button>
+        </div>
+        <form class="auth-form" id="authForm">
+          <label id="authNameField" hidden><span>Ім'я</span><input id="authName" autocomplete="name" /></label>
+          <label><span>Email</span><input id="authEmail" type="email" required autocomplete="email" /></label>
+          <label><span>Пароль</span><input id="authPassword" type="password" required minlength="8" autocomplete="current-password" /></label>
+          <p class="form-status" id="authStatus"></p>
+          <button class="primary-button full" id="authSubmit" type="submit">Увійти</button>
+        </form>
+      </div>
+    </div>
+
+    <footer class="site-footer compact-footer">
+      <div><a class="brand footer-brand" href="index.html"><span class="brand-mark"><img src="media/Mainlogo.png" alt="" /></span><span>KovAuto</span></a><p>Український маркетплейс вживаних автомобілів.</p></div>
+      <div><h3>Навігація</h3><a href="index.html">Головна</a><a href="catalog.html">Каталог</a></div>
+      <div><h3>Контакти</h3><a href="tel:+380961616770">+380961616770</a><a href="mailto:kovalenkanazar2006@gmail.com">kovalenkanazar2006@gmail.com</a><span>Конотоп, Україна</span></div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KovAuto - купівля та продаж авто</title>
+    <meta
+      name="description"
+      content="Сучасний маркетплейс вживаних авто для України: пошук, перевірені продавці, преміальні оголошення та безпечні угоди."
+    />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body data-page="home">
+    <header class="site-header" id="top">
+      <a class="brand" href="#top" aria-label="KovAuto">
+        <span class="brand-mark"><img src="media/Mainlogo.png" alt="" /></span>
+        <span>KovAuto</span>
+      </a>
+      <nav class="main-nav" aria-label="Головна навігація">
+        <a href="#brands">Марки</a>
+        <a href="#popular">Авто</a>
+        <a href="#listings">Нові</a>
+        <a href="#top" id="searchNavLink">Пошук</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button" id="favoritesButton" type="button" aria-label="Обране">
+          <i data-lucide="heart"></i><span id="favoritesCount">0</span>
+        </button>
+        <button class="icon-button" id="messagesButton" type="button" aria-label="Повідомлення">
+          <i data-lucide="message-circle"></i><span id="messagesCount">0</span>
+        </button>
+        <button class="header-auth-button register-button" id="registerButton" type="button">Реєстрація</button>
+        <button class="header-auth-button login-button" id="loginButton" type="button">Вхід</button>
+        <button class="menu-button" id="menuButton" type="button" aria-label="Меню">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-media" role="img" aria-label="Білий Mercedes-Benz на заміській дорозі"></div>
+        <div class="hero-shade"></div>
+        <div class="hero-content reveal">
+          <p class="eyebrow">Маркетплейс перевірених авто</p>
+          <h1>Знайди автомобіль своєї мрії</h1>
+          <p class="hero-copy">Безпечна купівля та продаж авто в Україні з розумним пошуком, якісними фото та прозорими оголошеннями.</p>
+        </div>
+        <form class="search-panel reveal" id="heroSearch">
+          <label>
+            <span>Марка</span>
+            <select id="brandFilter" name="brand">
+              <option value="">Будь-яка</option>
+            </select>
+          </label>
+          <label>
+            <span>Модель</span>
+            <input id="modelFilter" name="model" type="search" placeholder="Наприклад, X5" />
+          </label>
+          <label>
+            <span>Рік від</span>
+            <select id="yearFilter" name="year">
+              <option value="">Будь-який</option>
+              <option>2024</option>
+              <option>2022</option>
+              <option>2020</option>
+              <option>2018</option>
+              <option>2016</option>
+            </select>
+          </label>
+          <label>
+            <span>Ціна до</span>
+            <select id="priceFilter" name="price">
+              <option value="">Будь-яка</option>
+              <option value="15000">$15 000</option>
+              <option value="30000">$30 000</option>
+              <option value="60000">$60 000</option>
+              <option value="100000">$100 000</option>
+            </select>
+          </label>
+          <button class="primary-button search-button" type="submit">
+            <i data-lucide="search"></i>
+            Знайти авто
+          </button>
+        </form>
+      </section>
+
+      <section class="section" id="brands">
+        <div class="section-head reveal">
+          <p class="eyebrow">Популярні марки</p>
+          <h2>Обирайте бренд, якому довіряєте</h2>
+        </div>
+        <div class="brand-grid reveal" id="brandGrid"></div>
+      </section>
+
+      <section class="section muted" id="popular">
+        <div class="section-head reveal">
+          <p class="eyebrow">Популярні автомобілі</p>
+          <h2>Авто, які найчастіше переглядають</h2>
+        </div>
+        <div class="carousel-wrap reveal">
+          <button class="carousel-control" id="scrollLeft" type="button" aria-label="Попередні авто">
+            <i data-lucide="chevron-left"></i>
+          </button>
+          <div class="car-carousel" id="popularCarousel" tabindex="0"></div>
+          <button class="carousel-control" id="scrollRight" type="button" aria-label="Наступні авто">
+            <i data-lucide="chevron-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <section class="section benefits">
+        <div class="section-head reveal">
+          <p class="eyebrow">Чому обирають нас</p>
+          <h2>Преміальний досвід без зайвої складності</h2>
+        </div>
+        <div class="benefit-grid reveal">
+          <article class="benefit-card">
+            <i data-lucide="shield-check"></i>
+            <h3>Безпечні угоди</h3>
+            <p>Допомагаємо з перевіркою авто, документів та історії власності.</p>
+          </article>
+          <article class="benefit-card">
+            <i data-lucide="badge-check"></i>
+            <h3>Перевірені продавці</h3>
+            <p>Профілі з рейтингом, фото, контактами та відкритою історією оголошень.</p>
+          </article>
+          <article class="benefit-card">
+            <i data-lucide="car-front"></i>
+            <h3>Великий вибір</h3>
+            <p>Від міських хетчбеків до електрокарів, SUV та бізнес-седанів.</p>
+          </article>
+          <article class="benefit-card">
+            <i data-lucide="sliders-horizontal"></i>
+            <h3>Швидкий пошук</h3>
+            <p>Фільтри за ціною, роком, пробігом, типом кузова та станом.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section listings" id="listings">
+        <div class="section-head reveal">
+          <p class="eyebrow">Нові оголошення</p>
+          <h2>Свіжі пропозиції на ринку</h2>
+        </div>
+        <div class="listing-toolbar reveal">
+          <label class="sort-label">
+            <span>Сортування</span>
+            <select id="sortSelect">
+              <option value="recommended">Рекомендовані</option>
+              <option value="priceAsc">Ціна: дешевші</option>
+              <option value="priceDesc">Ціна: дорожчі</option>
+              <option value="yearDesc">Рік: новіші</option>
+              <option value="mileageAsc">Пробіг: менший</option>
+            </select>
+          </label>
+        </div>
+        <div class="car-grid reveal" id="listingGrid"></div>
+      </section>
+
+    </main>
+
+    <aside class="dashboard" id="dashboard" aria-hidden="true">
+      <div class="dashboard-panel">
+        <div class="dashboard-head">
+          <div>
+            <p class="eyebrow">Особистий кабінет</p>
+            <h2>Мої оголошення</h2>
+          </div>
+          <button class="icon-button plain" id="closeDashboard" type="button" aria-label="Закрити кабінет">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <div class="account-row"><span id="accountName"></span><button id="logoutButton" type="button">Вийти</button></div>
+        <form class="ad-form" id="adForm">
+          <input type="hidden" id="editId" />
+          <label>
+            <span>Марка</span>
+            <select id="adBrand" required>
+              <option value="">Оберіть марку</option>
+            </select>
+          </label>
+          <label>
+            <span>Модель</span>
+            <input id="adModel" required placeholder="E-Class" />
+          </label>
+          <label>
+            <span>Об'єм двигуна, л</span>
+            <input id="adEngine" type="number" min="0.1" max="9.9" step="0.1" placeholder="2.0" />
+          </label>
+          <label>
+            <span>Місто</span>
+            <input id="adCity" required placeholder="Київ" />
+          </label>
+          <div class="form-row">
+            <label>
+              <span>Рік</span>
+              <input id="adYear" required type="number" min="1990" max="2026" placeholder="2021" />
+            </label>
+            <label>
+              <span>Ціна, $</span>
+              <input id="adPrice" required type="number" min="1000" placeholder="42000" />
+            </label>
+          </div>
+          <div class="form-row">
+            <label>
+              <span>Пробіг, км</span>
+              <input id="adMileage" required type="number" min="0" placeholder="58000" />
+            </label>
+            <label>
+              <span>Фото URL</span>
+              <input id="adImage" placeholder="https://..." />
+            </label>
+          </div>
+          <label>
+            <span>Або завантажте фото</span>
+            <input id="adPhoto" type="file" accept="image/jpeg,image/png,image/webp,image/avif" />
+          </label>
+          <label>
+            <span>Опис автомобіля</span>
+            <textarea id="adDescription" rows="5" maxlength="5000" placeholder="Стан, комплектація, історія обслуговування..."></textarea>
+          </label>
+          <p class="form-status" id="adStatus"></p>
+          <button class="primary-button full" type="submit">
+            <i data-lucide="save"></i>
+            Зберегти оголошення
+          </button>
+        </form>
+        <div class="my-ads" id="myAds"></div>
+      </div>
+    </aside>
+
+    <div class="modal" id="authModal" aria-hidden="true">
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+        <button class="icon-button plain modal-close" id="closeAuth" type="button" aria-label="Закрити">
+          <i data-lucide="x"></i>
+        </button>
+        <p class="eyebrow">KovAuto account</p>
+        <h2 id="authTitle">Увійдіть або створіть акаунт</h2>
+        <div class="auth-tabs">
+          <button class="active" type="button" data-auth-mode="login">Вхід</button>
+          <button type="button" data-auth-mode="register">Реєстрація</button>
+        </div>
+        <form class="auth-form" id="authForm">
+          <p class="form-status" id="authStatus"></p>
+          <label id="authNameField" hidden>
+            <span>Ім'я</span>
+            <input id="authName" autocomplete="name" />
+          </label>
+          <label>
+            <span>Email</span>
+            <input id="authEmail" type="email" required autocomplete="email" placeholder="you@email.com" />
+          </label>
+          <label>
+            <span>Пароль</span>
+            <input type="password" required placeholder="••••••••" />
+          </label>
+          <button class="primary-button full" type="submit">Продовжити</button>
+        </form>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div>
+        <a class="brand footer-brand" href="#top">
+          <span class="brand-mark"><img src="media/Mainlogo.png" alt="" /></span>
+          <span>KovAuto</span>
+        </a>
+        <p>Український маркетплейс для безпечної купівлі та продажу вживаних автомобілів.</p>
+      </div>
+      <div>
+        <h3>Навігація</h3>
+        <a href="#brands">Марки</a>
+        <a href="#listings">Оголошення</a>
+      </div>
+      <div>
+        <h3>Контакти</h3>
+        <a href="tel:+380961616770">+380961616770</a>
+        <a href="mailto:kovalenkanazar2006@gmail.com">kovalenkanazar2006@gmail.com</a>
+        <span>Конотоп, Україна</span>
+      </div>
+    </footer>
+  </body>
+</html>
